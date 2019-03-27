@@ -1,27 +1,9 @@
-# FirstAngular
+## 19/03/27
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
+@Input 으로 부모 컴포넌트에서 자식 컴포넌트로 데이터를 보내는 기능.
+기존 게시판에서 service를 통해서 데이터 통신을 하였음.
+부모 <-> 자식 간의 데이터 통신일때는 유용하지만 거리가 먼 컴포넌트간의 통신에서는 여러 작업이 수행되기 때문에 효율성이 감소.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+어느곳에 쓰일것인가?
+기존에 말씀해주신대로 service로 인해서 통신하는것이 더 유용하다고 판단되기 때문에 굳이 input output 사용성이 필요한지 잘 모르겠음.
+하지만 현제 프로젝트에서 사용하기 때문에 알아야 하는것은 확실하고 향후에 유지보수 단계에서 변경하는 사항이 필요해보임.(service 통신으로 변경된다면.)

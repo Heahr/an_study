@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../model/user.module';
 
 @Component({
@@ -27,6 +27,8 @@ export class UserListComponent implements OnInit {
   get users(): User[] {
     return this._users;
   }
+
+  @Output() remove = new EventEmitter<User>();
 
   constructor() { }
 

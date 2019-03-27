@@ -23,6 +23,10 @@ export class AppComponent {
     }
   }
 
+  removeUser(user: User) {
+    this.users = this.users.filter(({id}) => id !== user.id);
+  }
+
   getNextId(): number {
     return this.users.length ? Math.max(...this.users.map(({id}) => id)) + 1 : 1;
   }

@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
-import { User } from './model/user.module';
+import { Component, ViewChildren, QueryList } from '@angular/core';
+import { ChildComponent } from './child/child.component';
+
+export interface Checkbox {
+  id: number;
+  label: string;
+  checked: boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -7,27 +13,20 @@ import { User } from './model/user.module';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  users: User[] = [
-    {id: 1, name: 'Lee', role: 'Administrator'},
-    {id: 2, name: 'Baek', role: 'Developer'},
-    {id: 3, name: 'Park', role: 'Designer'}
-  ]
+  checkboxs: Checkbox[] = [
+    {id: 1, label: 'HTML', checked: true},
+    {id: 2, label: 'CSS', checked: false},
+    {id: 3, label: 'JS', checked: true},
+  ];
 
+  active = false;
+
+  @ViewChildren(ChildComponent) myChildren: QueryList<ChildComponent>;
   constructor() {
   }
 
-  addUser(name: string, role: string) {
-    const num: number = this.getNextId();
-    if(name && role) {
-      this.users = [...this.users, {id: num, name: `${name}` ,role: `${role}`}];
-    }
-  }
-
-  removeUser(user: User) {
-    this.users = this.users.filter(({id}) => id !== user.id);
-  }
-
-  getNextId(): number {
-    return this.users.length ? Math.max(...this.users.map(({id}) => id)) + 1 : 1;
+  toggle() {
+    this.active = !this.active;
+    this.myChildren.forEach(child => child.checkbox.checked = this.active);
   }
 }

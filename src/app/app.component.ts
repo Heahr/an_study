@@ -1,10 +1,9 @@
-import { Component, ViewChildren, QueryList } from '@angular/core';
-import { ChildComponent } from './child/child.component';
+import { Component } from '@angular/core';
 
-export interface Checkbox {
+export interface Todo {
   id: number;
-  label: string;
-  checked: boolean;
+  content: string;
+  complete: boolean;
 }
 
 @Component({
@@ -13,20 +12,26 @@ export interface Checkbox {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  checkboxs: Checkbox[] = [
-    {id: 1, label: 'HTML', checked: true},
-    {id: 2, label: 'CSS', checked: false},
-    {id: 3, label: 'JS', checked: true},
+  todos: Todo[] = [
+    {id: 1, content: 'HTML', complete: false},
+    {id: 2, content: 'CSS', complete: true},
+    {id: 3, content: 'Javascript', complete: false},
   ];
 
-  active = false;
-
-  @ViewChildren(ChildComponent) myChildren: QueryList<ChildComponent>;
-  constructor() {
+  add(content: string) {
+    this.todos = [...this.todos, {id: this.getNextId(), content, complete: false }];
   }
 
-  toggle() {
-    this.active = !this.active;
-    this.myChildren.forEach(child => child.checkbox.checked = this.active);
+  complete(id: number) {
+    this.todos = this.todos.map(
+      todo => todo.id === id ? ({...todo, complete: !todo.complete }) : todo
+    );
+  }
+
+  private getNextId(): number {
+    return !this.todos.length ? 1 : Math.max(...this.todos.map(({id}) => id)) + 1;
+  }
+
+  constructor() {
   }
 }

@@ -1,7 +1,8 @@
-<h3>Parent</h3>
-<button tpye="button" (click)="toggle()">
-  Toggle
-</button>
-<div *ngFor="let checkbox of checkboxs">
-  <app-child [checkbox]="checkbox"></app-child>
-</div>
+<input #todo type="text">
+<button (click)="add(todo.value)">add</button>
+<ul>
+  <li *ngFor="let todo of (todos|limit: 5)" (click)="complete(todo.id)" [class.completed]="todo.completed">
+    {{todo.content}}
+  </li>
+</ul>
+<pre>{{ todos | json }}</pre>

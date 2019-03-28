@@ -1,27 +1,8 @@
-# FirstAngular
+# 19/03/28
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
+pipe 함수
+원하는 데이터를 화면에 표시할때 원하는 방식(json, date, uppercase....)으로 변환해서 보여준다.
+만들어둔 pipe 함수 limite같은 경우에는 회사에서 정해둔 방식이나, 자주사용하는 함수들이 있으면 원하는 형식으로 만들어 정의해두면 관리가 편할거같다.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+예제에서는 배열자체는 모두 가지고 있지만 화면에 뿌려주는 것이 limite에 걸려있기 때문에 효율적일지는 잘 모르겠다.
+-> 데이터베이스에 저장되어있는 전화번호(01000000000)같은 것들은 - 가 없으니 화면에 뿌려줄때 -를 3번째, 4번째 마다 표시해주거나, 82) 같은 국내외 같은 형식 변환을 사용해줬다.

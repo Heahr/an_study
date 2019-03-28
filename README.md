@@ -1,27 +1,11 @@
-# FirstAngular
+# 19/03/28
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
+viewChild 와 viewChildren 의 기능.
+컴포넌트 템플릿에 매치된 자식요소(자식 컴포넌트, 네이티브 DOM 요소)를 viewChild라고 하며
+viewChild는 한개의 요소 취득, viewChildren은 탐색 조건에 맞는 여러 개의 요소를 한꺼번에 취득한다.
 
-## Development server
+viewChildren같은 경우에도 Input을 사용하기 때문에 service로 대체하여 사용할 가능성이 있어보이며 나중에 복잡하지 않은 구조일 경우 사용할 수도 있을거같다.
+그래도 정형화된 틀을 위하여 service 사용으로 인한 데이터 통신이 중요해 보임.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+역시나 해당 지역에서의 키워드를 가지고 그 값에 대응하는 값들을 화면에 띄워주는 역활이 가능해보임.
+*부모에서 일어난 작용을 하위에 보내여주는 기능.(데이터 or 이벤트)

@@ -5,4 +5,15 @@
     {{todo.content}}
   </li>
 </ul>
+<br/>
+<button (click)="status = !status">
+  {{ status ? 'Destroy Child' : 'Create Child' }}
+</button>
+<div *ngIf="status">
+  <button (click)="immutable='HELLO'"> 기본자료형 프로퍼티 변경 </button>
+  <button (click)="mutable.name='kim'"> 객체형 프로퍼티 변경 </button>"
+</div>
+<app-child [immutable]="immutable" [mutable]="mutable"></app-child>
+<br/>
+<hr/>
 <pre>{{ todos | json }}</pre>

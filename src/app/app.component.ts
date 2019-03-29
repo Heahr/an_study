@@ -12,6 +12,10 @@ export interface Todo {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  status = false;
+  immutable = 'hello';
+  mutable = { name: 'lee' };
+
   todos: Todo[] = [
     {id: 1, content: 'HTML', complete: false},
     {id: 2, content: 'CSS', complete: true},

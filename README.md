@@ -1,27 +1,8 @@
-# FirstAngular
+# 19/03/29
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
+angular의 라이프 사이클 언제 어떻게 component나 templat의 프로퍼티나 함수들이 사용될 시기를 정확하게 알아야하기 때문에 외울것.
+향후에 사이트에 적용하게 될 경우 라이프사이클로 인해서 유지보수나 해당 사이트의 속도가 좌우될수 있기 때문.(ex- 비동기 처리시마다 웹페이지를 다시 불러오는 함수들 라이프사이클 함수가 있으니 조심할것.)
 
-## Development server
+특히, onDestroy같은 경우에도 observable 구독을 컴포넌트 상태에서 해제해주지 않으면 메모리 누수나 다른 여러 부작용들이 일어날 수 있기 때문에 지속적인 참고와 생각들이 필요함.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+당장 어디에 들어간다 라기 보다는 구성단계에서 어떻게 구성할것인가를 고민해야 할것임.

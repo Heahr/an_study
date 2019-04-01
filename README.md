@@ -1,27 +1,12 @@
-# FirstAngular
+# 19/4/1
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
+기존 비동기 처리 방식에 있어서 콜백 함수나 프로미스를 사용할 시
+1. 한번에 하나의 데이터를 처리하기 때문에 연속성을 갖는 데이터를 처리할 수 없다.
+2. 서버로 보낸 요청은 취소할 수 없다.
+라는 단점을 가지고 있기 때문에 rxjs의 이벤트 데이터 스트림이 이 예제로 나왔다.
 
-## Development server
+이 내용은 어떠한 프로젝트 적용에 국한되지 않고 필요상황이 나오면 바로바로 사용할수 있을 것이다.
+예를들어 잘못된 서버통신이나, 서버통신에 의해서 온 데이터가 이상하게 전달되어 온다면 그것을 멈추고 다시요청을 보내거나 서버의 통신을 막을 수 있을 것이다.
+(-> ......)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+httpClient로 http요청을 수행하고, switchMap을 이용하여 옵저버블을 받아 새로운 옵저버블을 생성한다. 여기서 switchMap 오퍼레이터는 input 요소의 이벤트 스트림 옵저버블을 받아서 getGithubUser 메소드를 실행하여 새로운 옵저버블을 생성하고, 만약 메소드의 실행이 완료되지 않아 새로운 옵저버블이 반한되지 않은 상태일 때, 새로운 input 요소의 이벤트가 발생하면 메소드의 실행을 취소하고 새롭게 메소드를 실행시킨다. 메소드의 실행이 만약 취소된다면 http 요청도 취소된다.

@@ -1,31 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subject, Subscription, from } from 'rxjs';
-import { map, filter, tap } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
-const coldObservable$ = Observable.create(
-  observer => observer.next(Math.random())
-);
+import { Subscription, Observable, of, throwError } from 'rxjs';
+import { debounceTime, switchMap, map, tap, catchError } from 'rxjs/operators';
 
-coldObservable$.subscribe(
-  value => console.log(`1st observable's observer: ${value}`)
-);
-
-coldObservable$.subscribe(
-  value => console.log(`2nd observable's observer: ${value}`)
-);
-
-const subject = new Subject();
-const hotObservable$ = subject.asObservable();
-
-hotObservable$.subscribe(
-  value => console.log(`1nd observable's observer: ${value}`)
-);
-
-hotObservable$.subscribe(
-  value => console.log(`2nd observable's observer: ${value}`)
-);
-
-subject.next(Math.random());
+interface GithubUser {
+  login: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -33,29 +16,38 @@ subject.next(Math.random());
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy{
-  myArray = [1, 2, 3, 4, 5];
+  searchInput: FormControl = new FormControl('');
+  githubUser: GithubUser;
   subscription: Subscription;
-  value: number[] = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
-    const observable$ = from(this.myArray);
-
-    this.subscription = observable$.pipe(
-      map(item => item * 2),
-      filter(item => item > 5),
-      tap(item => console.log(item))
-    )
-    .subscribe(
-      value => this.value.push(value),
-      error => console.log(error),
-      () => console.log('Streaming finished')
+    this.subscription = this.searchInput.valueChanges.pipe(
+      debounceTime(500),
+      switchMap((userId: string) => this.getGithubUser(userId))
+    ).subscribe(
+      user => this.githubUser = user,
+      error => console.log(error)
     );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  getGithubUser(userId: string): Observable<GithubUser> {
+    return this.http.get<GithubUser>(`https://api.github.com/users/${userId}`).pipe(
+      map(user => ({login: user.login, name: user.name })),
+      tap(console.log),
+      catchError(err => {
+        if(err.status === 404) {
+          return of(`[ERROR] Not found user: ${userId}`);
+        } else {
+          return throwError(err);
+        }
+      })
+    );
   }
 }

@@ -1,27 +1,9 @@
-# FirstAngular
+# 19/4/1
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.2.
+observable의 단순 unitcast와 subject를 이용한 multicast를 이용해봄.
+unitcast의 경우 각각 observable을 바라보기 때문에 다른 log가 찍히며 multicast는 같은 observable을 바라보기 때문에 같은 log가 찍힌다는 것에 유념하며 코드를 짜면 될 것같다.
+참여하게 될 프로젝트들의 다른 컴포넌트의 같은 동작을하기위해서는 multicast를 이용하여 하면 될것이다.(여러 컴포넌트가 한꺼번에 다른언어로 바꾼다라는 가정이 있을때 사용하면 좋을것 같다.)
+input, output을 사용하였던것들도 생각하면서 바꾼다면 문제가 없어 보인다.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+operator같은 경우 옵저버블을 생성, 변환, 필터링, 에러 처리의 기능을 하는 함수이다. 오퍼레이터는 새로운 옵저버블을 반환하므로 subscribe 메소드에 도달하기 전까지 체이닝을 통해 데이터를 전달한다.
+체이닝으로 이어지는 이 과정을 '옵저버블 시퀀스' 라고 부른다.(map과 filter 부분을 확인하자.)

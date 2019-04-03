@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-class User {
-  constructor(
-    userid: string,
-    password: string,
-    role: string,
-    name?: string
-  ) {
-  }
-}
+import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { PasswordValidator } from '../password-validator';
 
 @Component({
   selector: 'app-user-form',
@@ -16,22 +8,51 @@ class User {
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-  user: User;
-  roles: string[];
+  userForm: FormGroup;
 
   constructor() { }
 
   ngOnInit() {
-    this.roles = ['Admin', 'Developer', 'Guest'];
-    this.initUser();
+    this.userForm = new FormGroup ({
+      userid: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9]{4,10}')
+      ]),
+      passwordGroup: new FormGroup({
+        password: new FormControl('',
+        Validators.required),
+        confirmPassword: new FormControl('',
+        Validators.required)
+      }, PasswordValidator.match),
+      hobbies: new FormArray([
+        new FormControl(''),
+        new FormControl('')
+      ])
+    })
   }
 
-  onSubmit(userForm) {
-    console.log('send user to server: ', this.user);
-    userForm.reset();
+  get userid() {
+    return this.userForm.get('userid');
   }
 
-  initUser() {
-    this.user = new User('', '', this.roles[0]);
+  get passwordGroup() {
+    return this.userForm.get('passwordGroup');
+  }
+
+  get password(){
+    return this.userForm.get('passwordGroup.password');
+  }
+
+  get confirmPassword() {
+    return this.userForm.get('passwordGroup.confirmPassword');
+  }
+
+  get hobbies(): FormArray {
+    return this.userForm.get('hobbies') as FormArray;
+  }
+
+  onSubmit() {
+    console.log(this.userForm);
+    this.userForm.reset();
   }
 }

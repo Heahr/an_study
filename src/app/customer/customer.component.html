@@ -1,0 +1,9 @@
+<p>Customer List</p>
+    <ul>
+      <li *ngFor="let customer of customers">
+        <a [routerLink]="customer.id"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active">{{ customer.name }}</a>
+      </li>
+    </ul>
+    <router-outlet></router-outlet> 

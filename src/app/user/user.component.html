@@ -1,0 +1,9 @@
+<p>User List</p>
+<ul>
+  <li *ngFor="let user of users">
+    <a [routerLink]="user.id"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="active">{{ user.name }}</a>
+  </li>
+</ul>
+<router-outlet></router-outlet>  

@@ -1,1 +1,5 @@
-<app-home></app-home>
+<nav>
+    <a routerLink="/user" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">User</a>
+    <a routerLink="/customer" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">customer</a>
+</nav>
+<router-outlet></router-outlet>

@@ -1,22 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
 
-import { HomeModule } from './home/home.module';
-
-import { CoreModule } from './core/core.module';
+import { UserModule } from './user/user.module';
+import { CustomerModule } from './customer/customer.module';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
+  declarations: [ AppComponent ],
+  imports: [ 
+    BrowserModule, 
+    UserModule,
+    CustomerModule,
+    /* AppRoutingModule 등록 */
+    AppRoutingModule
   ],
-  imports: [
-    BrowserModule,
-    HomeModule,
-    CoreModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
